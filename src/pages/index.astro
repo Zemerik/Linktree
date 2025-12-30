@@ -22,17 +22,17 @@ const socialLinks = [
   {
     name: "X",
     url: "https://x.com/Zemerik_X",
-    image: "icons/x.png",
+    image: "/icons/x.png",
   },
   {
     name: "Instagram",
     url: "https://instagram.com/Zemerik_Insta",
-    image: "icons/instagram.png",
+    image: "/icons/instagram.png",
   },
   {
     name: "LinkedIN",
     url: "https://linkedin.com/in/zemerik",
-    image: "icons/linkedin.png",
+    image: "/icons/linkedin.png",
   },
   {
     name: "Discord",
@@ -51,56 +51,262 @@ const socialLinks = [
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/icon.png" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Hemang Yadav (Zemerik) - A Passionate Developer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <title>Hemang Yadav (Zemerik)'s Links</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        overflow-x: hidden;
+      }
+      
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      }
+      
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .glass-strong {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      
+      .profile-img-wrapper {
+        position: relative;
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      .profile-img-wrapper::before {
+        content: '';
+        position: absolute;
+        inset: -8px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #4facfe, #00f2fe);
+        background-size: 400% 400%;
+        animation: gradientShift 8s ease infinite, rotate 10s linear infinite;
+        opacity: 0.6;
+        z-index: -1;
+        filter: blur(20px);
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+      
+      @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .link-button {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .link-button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+      
+      .link-button:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+      
+      .link-button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      
+      .social-icon {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .social-icon:hover {
+        transform: translateY(-6px) scale(1.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        pointer-events: none;
+        animation: particleFloat 20s infinite;
+      }
+      
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) translateX(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) translateX(100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      
+      .fade-in {
+        animation: fadeIn 0.8s ease-out;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
   </head>
-  <body class="bg-gradient-to-b from-blue-300 bg-blue-800">
-    <main
-      class="max-w-sm w-screen min-h-screen mx-auto shadow-lg py-20 px-5 flex flex-col items-stretch justify-center"
-    >
-      <div
-        class="kotak rounded-lg w-[160px] min-h-[160px] h-[160px] self-center"
-      >
-        <img
-          class="w-full h-full rounded-full"
-          src="/hemang.png"
-          alt="Hemang Yadav"
-        />
-      </div>
-
-      <div class="flex text-cyan-50 flex-col items-center mt-8">
-        <h1 class="text-2xl font-semibold">HEMANG YADAV</h1>
-        <p>A Passionate Developer</p>
-      </div>
-
-      <ul class="mt-10 space-y-3">
-        {
-          links.map((link) => (
-            <li class="hover:-translate-y-1 transition duration-150 hover:shadow">
-              <a href={link.url}>
-                <div class="kotak font-semibold text-lg text-white text-center tracking-wide rounded-lg w-full bg-blue-800 hover:bg-blue-800 duration-150 px-10 py-6">
-                  {link.name}
-                </div>
-              </a>
-            </li>
-          ))
+  <body class="gradient-bg min-h-screen">
+    <!-- Animated particles -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none" id="particles"></div>
+    <script is:inline>
+      (function() {
+        const particlesContainer = document.getElementById('particles');
+        if (!particlesContainer) return;
+        
+        const particleCount = 20;
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          const left = Math.random() * 100;
+          const size = Math.random() * 10 + 5;
+          const delay = Math.random() * 20;
+          const duration = Math.random() * 10 + 15;
+          particle.style.left = `${left}%`;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.animationDelay = `${delay}s`;
+          particle.style.animationDuration = `${duration}s`;
+          particlesContainer.appendChild(particle);
         }
-      </ul>
+      })();
+    </script>
 
-      <ul class="flex mt-10 justify-center space-x-4">
-        {
-          socialLinks.map((link) => (
-            <li class="hover:-translate-y-1 duration-100">
-              <a href={link.url} target = "_blank">
-                <div class="rounded-full w-[60px] h-[60px] bg-white-900 border-2 border-white-700 p-4 hover:bg-white-800 duration-100">
-                  <img src={link.image} alt="" />
-                </div>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+    <main class="relative min-h-screen flex items-center justify-center px-4 py-12">
+      <div class="w-full max-w-md space-y-8 fade-in">
+        <!-- Profile Section -->
+        <div class="flex flex-col items-center space-y-6">
+          <div class="profile-img-wrapper">
+            <div class="relative w-40 h-40 rounded-full overflow-hidden ring-4 ring-white/30 shadow-2xl">
+              <img
+                class="w-full h-full object-cover"
+                src="/branding.png"
+                alt="Hemang Yadav"
+              />
+            </div>
+          </div>
+
+          <div class="text-center space-y-2">
+            <h1 class="text-4xl font-bold text-white tracking-tight drop-shadow-lg">
+              Hemang Yadav
+            </h1>
+            <p class="text-white/90 text-lg font-light tracking-wide">
+              A Passionate Developer
+            </p>
+          </div>
+        </div>
+
+        <!-- Links Section -->
+        <ul class="space-y-4">
+          {
+            links.map((link, index) => (
+              <li 
+                class="fade-in"
+                style={`animation-delay: ${index * 0.1}s; animation-fill-mode: both;`}
+              >
+                <a 
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block"
+                >
+                  <div class="link-button glass-strong rounded-2xl px-6 py-5 text-center">
+                    <span class="relative z-10 text-white font-semibold text-lg tracking-wide">
+                      {link.name}
+                    </span>
+                  </div>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <!-- Social Links Section -->
+        <div class="pt-4">
+          <div class="glass rounded-3xl p-6">
+            <ul class="flex justify-center items-center space-x-5 flex-wrap gap-4">
+              {
+                socialLinks.map((link) => (
+                  <li>
+                    <a 
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block"
+                      aria-label={link.name}
+                    >
+                      <div class="social-icon glass-strong rounded-2xl w-14 h-14 p-3 flex items-center justify-center">
+                        <img 
+                          src={link.image} 
+                          alt={link.name}
+                          class="w-full h-full object-contain filter brightness-0 invert"
+                        />
+                      </div>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
 </html>
