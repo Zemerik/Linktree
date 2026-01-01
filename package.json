@@ -11,8 +11,8 @@
 		"deploy": "astro build && netlify deploy --prod"
 	},
 	"dependencies": {
-		"@astrojs/tailwind": "^3.0.1",
-		"astro": "^2.0.9",
+		"@astrojs/tailwind": "^6.0.2",
+		"astro": "^5.16.6",
 		"linktree": "file:",
 		"tailwindcss": "^3.2.6"
 	}
